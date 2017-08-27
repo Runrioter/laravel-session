@@ -1,0 +1,23 @@
+{
+  "name": "laravel-session",
+  "version": "0.0.1",
+  "description": "a session middleware to make koa and laravel cooperate with each other",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/killara/laravel-session.git"
+  },
+  "keywords": [
+    "koa-middleware",
+    "laravel"
+  ],
+  "author": "Runrioter <runrioter@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/killara/laravel-session/issues"
+  },
+  "homepage": "https://github.com/killara/laravel-session#readme"
+}
