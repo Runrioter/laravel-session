@@ -1,7 +1,6 @@
 'use strict';
 
 const debug = require('debug')('koa-session');
-const getSessionStore = require('./lib/store');
 const ContextSession = require('./lib/context');
 const util = require('./lib/util');
 const assert = require('assert');
@@ -22,6 +21,7 @@ module.exports = (app, opts) => {
 
   const formatedOpts = {
     key: opts.key,
+    store: opts.store,
     overwrite: true,
     httpOnly: true,
     signed: false,
@@ -35,7 +35,6 @@ module.exports = (app, opts) => {
     formatedOpts.cipherAlgorithm = opts.cipherAlgorithm;
   }
 
-  formatedOpts.store = opts.driver ? getSessionStore(opts.driver) : null;
   if (opts.expire_on_close) {
     formatedOpts.maxAge = 'session';
   } else {
