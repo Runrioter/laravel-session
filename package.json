@@ -1,6 +1,6 @@
 {
   "name": "laravel-session",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a session middleware to make koa and laravel cooperate with each other",
   "main": "index.js",
   "scripts": {
