@@ -1,6 +1,6 @@
 'use strict';
 
-const debug = require('debug')('koa-session');
+const debug = require('debug')('lavavel-session');
 const ContextSession = require('./lib/context');
 const util = require('./lib/util');
 const assert = require('assert');
@@ -21,7 +21,6 @@ module.exports = (app, opts) => {
 
   const formatedOpts = {
     key: opts.key,
-    store: opts.store,
     overwrite: true,
     httpOnly: true,
     signed: false,
@@ -41,35 +40,35 @@ module.exports = (app, opts) => {
     formatedOpts.maxAge = opts.lifetime * 60 * 1000;
   }
 
+  debug('session options %j', formatedOpts);
+
   // setup encoding/decoding
-  if (typeof formatedOpts.encode !== 'function') {
+  if (typeof opts.encode !== 'function') {
     formatedOpts.encode = util.encode;
   }
-  if (typeof formatedOpts.decode !== 'function') {
+  if (typeof opts.decode !== 'function') {
     formatedOpts.decode = util.decode;
   }
+  if (!opts.genid) {
+    formatedOpts.genid = () => ((opts.prefix || '') + uid.sync(30));
+  }
 
-  const store = formatedOpts.store;
+  const store = opts.store;
   if (store) {
     assert(is.function(store.get), 'store.get must be function');
     assert(is.function(store.set), 'store.set must be function');
     assert(is.function(store.destroy), 'store.destroy must be function');
+    formatedOpts.store = store;
   }
 
-  const ContextStore = formatedOpts.ContextStore;
+  const ContextStore = opts.ContextStore;
   if (ContextStore) {
     assert(is.class(ContextStore), 'ContextStore must be a class');
     assert(is.function(ContextStore.prototype.get), 'ContextStore.prototype.get must be function');
     assert(is.function(ContextStore.prototype.set), 'ContextStore.prototype.set must be function');
     assert(is.function(ContextStore.prototype.destroy), 'ContextStore.prototype.destroy must be function');
+    formatedOpts.ContextStore = ContextStore;
   }
-
-  if (!formatedOpts.genid) {
-    if (formatedOpts.prefix) formatedOpts.genid = () => formatedOpts.prefix + uid.sync(24);
-    else formatedOpts.genid = () => uid.sync(24);
-  }
-
-  debug('session options %j', formatedOpts);
 
   extendContext(app.context, formatedOpts);
   return async function session(ctx, next) {

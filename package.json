@@ -4,7 +4,9 @@
   "description": "a session middleware to make koa and laravel cooperate with each other",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint lib test index.js --fix",
+    "test": "jest --forceExit",
+    "test-cov": "npm run test -- --coverage"
   },
   "repository": {
     "type": "git",
@@ -24,15 +26,15 @@
     "eslint": "^4.5.0",
     "eslint-config-egg": "^5.1.0",
     "eslint-plugin-jest": "^20.0.3",
-    "jest": "^20.0.4"
+    "jest": "^20.0.4",
+    "koa": "^2.3.0",
+    "koa-redis": "^3.0.0",
+    "php-serialize": "^1.2.5"
   },
   "dependencies": {
     "crc": "^3.4.4",
     "debug": "^3.0.1",
     "is-type-of": "^1.2.0",
-    "koa-memcached": "^0.1.2",
-    "koa-session": "^5.5.0",
-    "php-serialize": "^1.2.5",
     "uid-safe": "^2.1.5"
   }
 }
