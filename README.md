@@ -4,7 +4,9 @@
 [![Travis branch](https://img.shields.io/travis/killara/laravel-session/master.svg)](https://travis-ci.org/killara/laravel-session)
 [![Codecov branch](https://img.shields.io/codecov/c/github/killara/laravel-session/master.svg)](https://codecov.io/github/killara/laravel-session?branch=master)
 
-:couple: A session middleware to make koa and laravel cooperate with each other
+:couple: A session middleware to make koa and laravel cooperate with each other.
+
+In order to migrate Laravel(PHP) to Koa(Nodejs) gradually, the most main task is to make Laravel share session management with Koa, so this repository occurs.
 
 ## Install
 
