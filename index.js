@@ -1,7 +1,7 @@
 'use strict';
 
 const debug = require('debug')('koa-session');
-const getSessionStore = require('./store');
+const getSessionStore = require('./lib/store');
 const ContextSession = require('./lib/context');
 const util = require('./lib/util');
 const assert = require('assert');
