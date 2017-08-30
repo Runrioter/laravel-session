@@ -1,0 +1,15 @@
+{
+  "extends": "eslint-config-egg",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "plugins": [
+    "jest"
+  ],
+  "rules": {
+    "no-bitwise": ["error", { "allow": ["^", "|="] }]
+  },
+  "env": {
+    "jest/globals": true
+  }
+}

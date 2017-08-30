@@ -1,2 +1,3 @@
 # laravel-session
-a session middleware to make koa and laravel cooperate with each other
+
+A session middleware to make koa and laravel cooperate with each other

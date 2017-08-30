@@ -19,5 +19,20 @@
   "bugs": {
     "url": "https://github.com/killara/laravel-session/issues"
   },
-  "homepage": "https://github.com/killara/laravel-session#readme"
+  "homepage": "https://github.com/killara/laravel-session#readme",
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-egg": "^5.1.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "crc": "^3.4.4",
+    "debug": "^3.0.1",
+    "is-type-of": "^1.2.0",
+    "koa-memcached": "^0.1.2",
+    "koa-session": "^5.5.0",
+    "php-serialize": "^1.2.5",
+    "uid-safe": "^2.1.5"
+  }
 }
