@@ -1,6 +1,6 @@
 {
   "name": "laravel-session",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a session middleware to make koa and laravel cooperate with each other",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,10 @@
   "keywords": [
     "koa-middleware",
     "laravel"
+  ],
+  "files": [
+    "lib",
+    "index.js"
   ],
   "author": "Runrioter <runrioter@qq.com>",
   "license": "MIT",
