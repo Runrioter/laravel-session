@@ -27,6 +27,14 @@ module.exports = (app, opts) => {
     signed: false,
     rolling: true,
   };
+
+  if (!opts.cipherKey || !opts.cipherAlgorithm) {
+    throw new Error('Both cipherKey and cipherAlgorithm required');
+  } else {
+    formatedOpts.cipherKey = opts.cipherKey;
+    formatedOpts.cipherAlgorithm = opts.cipherAlgorithm;
+  }
+
   formatedOpts.store = opts.driver ? getSessionStore(opts.driver) : null;
   if (opts.expire_on_close) {
     formatedOpts.maxAge = 'session';
