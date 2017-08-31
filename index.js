@@ -26,7 +26,7 @@ module.exports = (app, opts) => {
   nopts.lifetime = opts.lifetime || 1440; // (minites)one day
   nopts.overwrite = opts.overwrite || true;
   nopts.httpOnly = opts.httpOnly || true;
-  nopts.signed = opts.signed || false;
+  nopts.signed = false; // unnecessary support `sigined`
   nopts.rolling = opts.rolling || true;
 
   if (opts.expire_on_close) {
