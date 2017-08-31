@@ -12,45 +12,42 @@ const _CONTEXT_SESSION = Symbol('@@_contextSession');
 
 module.exports = (app, opts) => {
   if (!app || typeof app.use !== 'function') {
-    throw new TypeError('app instance required: `session(app, opts)`');
+    throw new TypeError('koa app instance required: `session(app, opts)`');
   }
   opts = opts || {};
-  opts.key = opts.key || 'killara-session';
-  opts.expire_on_close = opts.expire_on_close || false;
-  opts.lifetime = opts.lifetime || 24 * 60; // (minites)one day
+  const nopts = {};
+  assert(opts.cipherKey, 'Option `cipherKey` should be the `key` in config/app.php or your .env file');
+  nopts.cipherKey = opts.cipherKey;
+  assert(opts.cipherAlgorithm, 'Option `cipherAlgorithm` should be the `cipher` in config/app.php or your .env file');
+  nopts.cipherAlgorithm = opts.cipherAlgorithm;
 
-  const formatedOpts = {
-    key: opts.key,
-    overwrite: true,
-    httpOnly: true,
-    signed: false,
-    rolling: true,
-  };
-
-  if (!opts.cipherKey || !opts.cipherAlgorithm) {
-    throw new Error('Both cipherKey and cipherAlgorithm required');
-  } else {
-    formatedOpts.cipherKey = opts.cipherKey;
-    formatedOpts.cipherAlgorithm = opts.cipherAlgorithm;
-  }
+  nopts.key = opts.key || 'killara-session';
+  nopts.expire_on_close = opts.expire_on_close || false;
+  nopts.lifetime = opts.lifetime || 1440; // (minites)one day
+  nopts.overwrite = opts.overwrite || true;
+  nopts.httpOnly = opts.httpOnly || true;
+  nopts.signed = opts.signed || false;
+  nopts.rolling = opts.rolling || true;
 
   if (opts.expire_on_close) {
-    formatedOpts.maxAge = 'session';
+    nopts.maxAge = 'session';
   } else {
-    formatedOpts.maxAge = opts.lifetime * 60 * 1000;
+    assert(typeof opts.lifetime === 'number', 'Option `lifetime` should a number in minite unit');
+    nopts.maxAge = opts.lifetime * 60 * 1000;
   }
 
-  debug('session options %j', formatedOpts);
+  debug('session options %j', nopts);
 
   // setup encoding/decoding
   if (typeof opts.encode !== 'function') {
-    formatedOpts.encode = util.encode;
+    nopts.encode = util.encode;
   }
   if (typeof opts.decode !== 'function') {
-    formatedOpts.decode = util.decode;
+    nopts.decode = util.decode;
   }
-  if (!opts.genid) {
-    formatedOpts.genid = () => ((opts.prefix || '') + uid.sync(30));
+
+  if (typeof opts.genid !== 'function') {
+    nopts.genid = () => ((opts.prefix || '') + uid.sync(30));
   }
 
   const store = opts.store;
@@ -58,7 +55,7 @@ module.exports = (app, opts) => {
     assert(is.function(store.get), 'store.get must be function');
     assert(is.function(store.set), 'store.set must be function');
     assert(is.function(store.destroy), 'store.destroy must be function');
-    formatedOpts.store = store;
+    nopts.store = store;
   }
 
   const ContextStore = opts.ContextStore;
@@ -67,10 +64,11 @@ module.exports = (app, opts) => {
     assert(is.function(ContextStore.prototype.get), 'ContextStore.prototype.get must be function');
     assert(is.function(ContextStore.prototype.set), 'ContextStore.prototype.set must be function');
     assert(is.function(ContextStore.prototype.destroy), 'ContextStore.prototype.destroy must be function');
-    formatedOpts.ContextStore = ContextStore;
+    nopts.ContextStore = ContextStore;
   }
 
-  extendContext(app.context, formatedOpts);
+  extendContext(app.context, nopts);
+
   return async function session(ctx, next) {
     const sess = ctx[CONTEXT_SESSION];
     if (sess.store) await sess.initFromExternal();
