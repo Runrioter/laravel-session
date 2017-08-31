@@ -1,7 +1,7 @@
 'use strict';
 
 const Koa = require('koa');
-const session = require('..');
+const session = require('.');
 const redisStore = require('koa-redis');
 const phpserialize = require('php-serialize');
 
