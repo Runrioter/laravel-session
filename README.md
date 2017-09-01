@@ -15,7 +15,7 @@ In order to migrate Laravel(PHP) to Koa(Nodejs) gradually, the most main task is
 ## Options
 
 - `key` - used as session cookie key
-- `store` - a store used to store session. e.g. `koa-redis`
+- `store` - a store used to store session. e.g. `koa-redis`, `killara-memcached`
 - `expire_on_close` - `true`: when browser closed, session expires, `false`: session expires according `lifetime`
 - `lifetime` session lifetime
 - `cipherKey` a cipherkey used encode/decode internal session key
@@ -29,7 +29,7 @@ In order to migrate Laravel(PHP) to Koa(Nodejs) gradually, the most main task is
 'use strict';
 
 const Koa = require('koa');
-const session = require('.');
+const session = require('laravel-session');
 const MemcachedStore = require('killara-memcached');
 const phpserialize = require('php-serialize');
 
