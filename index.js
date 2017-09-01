@@ -4,7 +4,7 @@ const debug = require('debug')('lavavel-session');
 const ContextSession = require('./lib/context');
 const util = require('./lib/util');
 const assert = require('assert');
-const uid = require('uid-safe');
+const rchars = require('rchars');
 const is = require('is-type-of');
 
 const CONTEXT_SESSION = Symbol('@@contextSession');
@@ -47,7 +47,7 @@ module.exports = (app, opts) => {
   }
 
   if (typeof opts.genid !== 'function') {
-    nopts.genid = () => ((opts.prefix || '') + uid.sync(30));
+    nopts.genid = () => ((opts.prefix || '') + rchars.randomSafeSync(40));
   }
 
   const store = opts.store;
