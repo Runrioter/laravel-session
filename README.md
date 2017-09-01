@@ -29,17 +29,20 @@ In order to migrate Laravel(PHP) to Koa(Nodejs) gradually, the most main task is
 'use strict';
 
 const Koa = require('koa');
-const session = require('laravel-session');
-const redisStore = require('koa-redis');
+const session = require('.');
+const MemcachedStore = require('killara-memcached');
 const phpserialize = require('php-serialize');
 
 const app = new Koa();
 
 const CONFIG = {
   key: 'hexindai-session', // cookie key
-  store: redisStore({
+  store: new MemcachedStore({
+    serverLocations: '127.0.0.1:11211',
     serialize: phpserialize.serialize,
     unserialize: phpserialize.unserialize,
+    reconnect: 5,
+    retry: 5,
   }),
   expire_on_close: false,
   lifetime: 30, // minites, the same as maxAge

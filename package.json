@@ -31,8 +31,8 @@
     "eslint-config-egg": "^5.1.0",
     "eslint-plugin-jest": "^20.0.3",
     "jest": "^20.0.4",
+    "killara-memcached": "0.0.8",
     "koa": "^2.3.0",
-    "koa-redis": "^3.0.0",
     "php-serialize": "^1.2.5"
   },
   "dependencies": {
