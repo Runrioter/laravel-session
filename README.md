@@ -38,11 +38,8 @@ const app = new Koa();
 const CONFIG = {
   key: 'hexindai-session', // cookie key
   store: new MemcachedStore({
-    serverLocations: '127.0.0.1:11211',
     serialize: phpserialize.serialize,
     unserialize: phpserialize.unserialize,
-    reconnect: 5,
-    retry: 5,
   }),
   expire_on_close: false,
   lifetime: 30, // minites, the same as maxAge
