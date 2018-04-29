@@ -1,12 +1,16 @@
 # laravel-session
 
-[![npm](https://img.shields.io/npm/v/laravel-session.svg)](https://www.npmjs.com/package/laravel-session)
-[![Travis branch](https://img.shields.io/travis/killara/laravel-session/master.svg)](https://travis-ci.org/killara/laravel-session)
-[![Codecov branch](https://img.shields.io/codecov/c/github/killara/laravel-session/master.svg)](https://codecov.io/github/killara/laravel-session?branch=master)
-
 :couple: A session middleware to make koa and laravel cooperate with each other.
 
 In order to migrate Laravel(PHP) to Koa(Nodejs) gradually, the most main task is to make Laravel share session management with Koa, so this repository occurs.
+
+[![npm](https://img.shields.io/npm/v/laravel-session.svg)](https://www.npmjs.com/package/laravel-session)
+[![Travis branch](https://img.shields.io/travis/Runrioter/laravel-session/master.svg)](https://travis-ci.org/Runrioter/laravel-session)
+[![Codecov branch](https://img.shields.io/codecov/c/github/Runrioter/laravel-session/master.svg)](https://codecov.io/github/Runrioter/laravel-session?branch=master)
+[![David deps](https://img.shields.io/david/Runrioter/laravel-session.svg)](https://david-dm.org/Runrioter/laravel-session)
+[![Known Vulnerabilities](https://snyk.io/test/npm/Runrioter/laravel-session/badge.svg)](https://snyk.io/test/npm/Runrioter/laravel-session)
+[![npm download](https://img.shields.io/npm/dt/Runrioter/laravel-session.svg)](https://www.npmjs.com/package/Runrioter/laravel-session)
+
 
 ## Install
 

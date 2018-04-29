@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/killara/laravel-session.git"
+    "url": "git+https://github.com/Runrioter/laravel-session.git"
   },
   "keywords": [
     "koa-middleware",
@@ -23,9 +23,9 @@
   "author": "Runrioter <runrioter@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/killara/laravel-session/issues"
+    "url": "https://github.com/Runrioter/laravel-session/issues"
   },
-  "homepage": "https://github.com/killara/laravel-session#readme",
+  "homepage": "https://github.com/Runrioter/laravel-session#readme",
   "devDependencies": {
     "eslint": "^4.5.0",
     "eslint-config-egg": "^5.1.0",
